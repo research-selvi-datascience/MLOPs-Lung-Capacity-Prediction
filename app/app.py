@@ -46,7 +46,7 @@ def predict():
 
     #  Format to float and 2 decimal places
     #formatted_prediction = f"The predicted value is {round(float(prediction[0]), 2)}"
-    
+
     formatted_prediction = (
         f"The predicted value is {round(float(prediction[0]), 2)} | "
         f"Best Model: {model_info['name']} | "

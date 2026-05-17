@@ -8,6 +8,15 @@ from sklearn.compose import ColumnTransformer
 def load_and_preprocess(path="data/LungCap.csv"):
     lung_df = pd.read_csv(path)
 
+    # check for null data 
+    print(f"Null values:", lung_df.isnull().sum())
+
+    #check for duplicated 
+    print(f"Duplicated values: ", lung_df.duplicated().sum())
+
+    #print the statistical properties
+    lung_df.describe().to_csv("data_quality_report.csv")
+
     X = lung_df.iloc[:, 1:].values   # Age, Height, Smoke, Gender
     y = lung_df.iloc[:, 0].values    # LungCap
 

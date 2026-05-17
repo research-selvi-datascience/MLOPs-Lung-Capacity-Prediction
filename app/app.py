@@ -16,11 +16,18 @@ def home():
 
 def predict():
     # Get form data
-    Age = float(request.form.get("Age"))
-    Height = float(request.form.get("Height"))
+    # Age = float(request.form.get("Age"))
+    # Height = float(request.form.get("Height"))
+
+    try:
+        Age = float(request.form.get("Age"))
+        Height = float(request.form.get("Height"))
+    except:
+        return "Invalid numeric input"
+
     Smoke = 1 if request.form.get("Smoke", "").lower() == "yes" else 0
     Gender = 1 if request.form.get("Gender", "").lower() == "male" else 0
-    
+
     # Prepare features for prediction
    
     feature_names = ["Age", "Height", "Smoke", "Gender"]

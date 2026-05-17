@@ -50,9 +50,7 @@ def predict():
     formatted_prediction = (
         f"The predicted value is {round(float(prediction[0]), 2)} | "
         f"Best Model: {model_info['name']} | "
-        f"R2 Score: {round(model_info['r2'], 3)}"
-)
-
+        f"R2 Score: {round(model_info['r2'], 3)}")
 
     return render_template("result.html", prediction=formatted_prediction)
 

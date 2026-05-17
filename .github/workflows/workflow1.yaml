@@ -1,0 +1,21 @@
+name: ML Model - Lung-app
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@6
+
+      - name: Build Docker image
+        run: docker build -t lung-app .
+
+      - name: Run Docker container
+        run: docker run -d -p 5000:5000 lung-app
+
+      - name: List containers
+        run: docker ps

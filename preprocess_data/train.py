@@ -20,8 +20,8 @@ from sklearn.tree import DecisionTreeRegressor
 from preprocess_data.preprocess import load_and_preprocess
 
 # ML Flow tracking:
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
-mlflow.set_experiment("lung-capacity-prediction")
+# mlflow.set_tracking_uri("http://127.0.0.1:5000")
+# mlflow.set_experiment("lung-capacity-prediction")
 
 # Loading the data
 X, y = load_and_preprocess()

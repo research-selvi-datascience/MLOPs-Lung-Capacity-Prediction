@@ -16,6 +16,7 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.svm import SVR
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.neural_network import MLPRegressor
 
 from preprocess_data.preprocess import load_and_preprocess
 
@@ -40,7 +41,8 @@ models = {
     "KNN": KNeighborsRegressor(n_neighbors=5),
     "SVR": SVR(kernel="rbf", C=100),
     "RandomForest": RandomForestRegressor(n_estimators=100),
-    "DecisionTree": DecisionTreeRegressor(max_depth=5)
+    "DecisionTree": DecisionTreeRegressor(max_depth=5),
+    "ANN": MLPRegressor(hidden_layer_sizes=(50, 50), max_iter=500, random_state=42)
     }
 
 best_model = None
@@ -72,3 +74,11 @@ os.makedirs("models", exist_ok=True)
 
 pickle.dump(best_model, open("models/model.pkl", "wb"))
 pickle.dump(scaler, open("models/scaler.pkl", "wb"))
+
+
+best_model_info = {
+    "name": best_name,
+    "r2": best_score
+}
+
+pickle.dump(best_model_info, open("models/model_info.pkl", "wb"))

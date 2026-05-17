@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 # Load the trained model
 model = pickle.load(open("models/model.pkl", "rb"))
+model_info = pickle.load(open("models/model_info.pkl", "rb"))
 
 @app.route("/")
 def home():
@@ -44,8 +45,12 @@ def predict():
     prediction = model.predict(features)
 
     #  Format to float and 2 decimal places
-    formatted_prediction = f"The predicted value is {round(float(prediction[0]), 2)}"
-
+    #formatted_prediction = f"The predicted value is {round(float(prediction[0]), 2)}"
+    
+    formatted_prediction = (
+        f"The predicted value is {round(float(prediction[0]), 2)} | "
+        f"Best Model: {model_info['name']} | "
+        f"R2 Score: {round(model_info['r2'], 3)}")
 
     return render_template("result.html", prediction=formatted_prediction)
 

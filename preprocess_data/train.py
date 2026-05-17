@@ -72,3 +72,11 @@ os.makedirs("models", exist_ok=True)
 
 pickle.dump(best_model, open("models/model.pkl", "wb"))
 pickle.dump(scaler, open("models/scaler.pkl", "wb"))
+
+
+best_model_info = {
+    "name": best_name,
+    "r2": best_score
+}
+
+pickle.dump(best_model_info, open("models/model_info.pkl", "wb"))

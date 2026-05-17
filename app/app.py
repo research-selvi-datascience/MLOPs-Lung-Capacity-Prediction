@@ -16,8 +16,6 @@ def home():
 
 def predict():
     # Get form data
-    # Age = float(request.form.get("Age"))
-    # Height = float(request.form.get("Height"))
 
     try:
         Age = float(request.form.get("Age"))
@@ -26,18 +24,27 @@ def predict():
         return "Invalid numeric input"
 
     Smoke = 1 if request.form.get("Smoke", "").lower() == "yes" else 0
-    Gender = 1 if request.form.get("Gender", "").lower() == "male" else 0
+
+    Gender = request.form.get("Gender", "").lower()
+
+# One-hot encoding manually
+    if Gender == "male":
+        gender_female = 0
+        gender_male = 1
+    else:
+        gender_female = 1
+        gender_male = 0
+
 
     # Prepare features for prediction
    
-    feature_names = ["Age", "Height", "Smoke", "Gender"]
-    features = pd.DataFrame([[Age, Height, Smoke, Gender]], columns=feature_names)
+    features = pd.DataFrame([[gender_female, gender_male, Age, Height, Smoke]])
 
     # Predict charges
     prediction = model.predict(features)
 
     #  Format to float and 2 decimal places
-    formatted_prediction = f"The predicted value is ${round(float(prediction[0]), 2)}"
+    formatted_prediction = f"The predicted value is {round(float(prediction[0]), 2)}"
 
 
     return render_template("result.html", prediction=formatted_prediction)

@@ -6,6 +6,8 @@ import mlflow
 import mlflow.sklearn
 import pickle
 import os
+import warnings
+warnings.filterwarnings("ignore")
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -45,12 +47,13 @@ models = {
     "ANN": MLPRegressor(hidden_layer_sizes=(50, 50), max_iter=500, random_state=42)
     }
 
+mlflow.set_experiment("lung-capacity-prediction")
+
 best_model = None
 best_score = -999
 best_name = ""
 
-mlflow.set_experiment("lung-capacity-prediction")
-
+for name, model in models.items():
 
     with mlflow.start_run(run_name=name):
 

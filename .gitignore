@@ -5,5 +5,8 @@ mlflow.db
 __pycache__/
 *.pyc
 
-# Jupyter checkpoints (if any)
+# Jupyter checkpoints
 .ipynb_checkpoints/
+
+# Prediction logs
+prediction_logs.txt

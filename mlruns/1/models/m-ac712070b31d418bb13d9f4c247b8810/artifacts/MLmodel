@@ -1,0 +1,23 @@
+artifact_path: /workspaces/MLOPs-Lung-Capacity-Prediction/mlruns/1/models/m-ac712070b31d418bb13d9f4c247b8810/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.1
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.12.0
+model_id: m-ac712070b31d418bb13d9f4c247b8810
+model_size_bytes: 499
+model_uuid: m-ac712070b31d418bb13d9f4c247b8810
+prompts: null
+run_id: 97b4feefc7264eada069a81a06f01b4c
+utc_time_created: '2026-05-18 22:52:56.287446'

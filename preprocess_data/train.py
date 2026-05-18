@@ -49,7 +49,8 @@ best_model = None
 best_score = -999
 best_name = ""
 
-for name, model in models.items():
+mlflow.set_experiment("lung-capacity-prediction")
+
 
     with mlflow.start_run(run_name=name):
 
@@ -60,6 +61,8 @@ for name, model in models.items():
 
         mlflow.log_param("model", name)
         mlflow.log_metric("r2_score", r2)
+
+        mlflow.sklearn.log_model(model, "model")
 
         print(f"{name} R2: {r2}")
 

@@ -2,6 +2,7 @@ import pickle
 import pandas as pd
 import numpy as np
 from flask import Flask, request, render_template
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -52,7 +53,15 @@ def predict():
         f"Best Model: {model_info['name']} | "
         f"R2 Score: {round(model_info['r2'], 3)}")
 
+    with open("prediction_logs.txt", "a") as f:
+        f.write(
+            f"{datetime.now()} | "
+            f"Age={Age}, Height={Height}, Smoke={Smoke}, "
+            f"Gender={Gender}, Prediction={prediction[0]}\n"
+                )
+
     return render_template("result.html", prediction=formatted_prediction)
+
 
 
 if __name__ == "__main__":

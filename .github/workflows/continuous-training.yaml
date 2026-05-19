@@ -21,4 +21,4 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run training
-        run: python preprocess_data/train.py
+        run: python -m preprocess_data.train

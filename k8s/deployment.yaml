@@ -15,5 +15,7 @@ spec:
       containers:
         - name: lung-app
           image: researchselvi/lung-app:latest
+          imagePullPolicy: Always
+
           ports:
             - containerPort: 5000

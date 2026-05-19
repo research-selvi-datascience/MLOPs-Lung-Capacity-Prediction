@@ -3,7 +3,7 @@ name: Continuous Training Pipeline
 on:
   push:
     branches:
-      - main
+      - feature/continuous-training
 
 jobs:
   train:

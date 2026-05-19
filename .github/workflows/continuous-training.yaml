@@ -1,5 +1,7 @@
 name: Continuous Training Pipeline
 
+
+
 on:
   push:
     branches:
@@ -22,3 +24,9 @@ jobs:
 
       - name: Run training
         run: python -m preprocess_data.train
+
+      - name: Upload Model Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: model
+          path: models/

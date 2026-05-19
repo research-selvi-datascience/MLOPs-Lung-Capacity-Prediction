@@ -47,6 +47,7 @@ models = {
     "ANN": MLPRegressor(hidden_layer_sizes=(50, 50), max_iter=500, random_state=42)
     }
 
+mlflow.set_tracking_uri("file:/tmp/mlruns")
 mlflow.set_experiment("lung-capacity-prediction")
 
 best_model = None

@@ -9,6 +9,9 @@ import os
 import warnings
 warnings.filterwarnings("ignore")
 
+import tempfile
+os.environ["MLFLOW_ARTIFACT_ROOT"] = tempfile.gettempdir()
+
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import r2_score

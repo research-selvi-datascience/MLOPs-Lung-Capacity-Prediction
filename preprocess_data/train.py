@@ -47,7 +47,15 @@ models = {
     "ANN": MLPRegressor(hidden_layer_sizes=(50, 50), max_iter=500, random_state=42)
     }
 
-mlflow.set_tracking_uri("file:/tmp/mlruns")
+#mlflow.set_tracking_uri("file:/tmp/mlruns")
+#mlflow.set_tracking_uri("file:./mlruns")
+#mlflow.set_experiment("lung-capacity-prediction")
+
+#mlflow.set_tracking_uri("file:/workspaces/MLOPs-Lung-Capacity-Prediction/mlruns")
+
+#mlflow.set_tracking_uri("file:/workspaces/MLOPs-Lung-Capacity-Prediction/mlruns")
+
+mlflow.set_tracking_uri("sqlite:///mlflow.db")
 mlflow.set_experiment("lung-capacity-prediction")
 
 best_model = None
@@ -89,3 +97,26 @@ best_model_info = {
 }
 
 pickle.dump(best_model_info, open("models/model_info.pkl", "wb"))
+
+
+pickle.dump(best_model_info, open("models/model_info.pkl", "wb"))
+
+# Register best model in MLflow
+with mlflow.start_run(run_name="Best_Model_Registry"):
+
+    mlflow.log_param("best_model", best_name)
+    mlflow.log_metric("best_r2", best_score)
+
+    mlflow.sklearn.log_model(
+        sk_model=best_model,
+        artifact_path="best_model"
+    )
+
+    model_uri = f"runs:/{mlflow.active_run().info.run_id}/best_model"
+
+    mlflow.register_model(
+        model_uri=model_uri,
+        name="lung-capacity-model"
+    )
+
+print("Best model registered successfully!")

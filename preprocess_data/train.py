@@ -50,11 +50,11 @@ models = {
     "ANN": MLPRegressor(hidden_layer_sizes=(50, 50), max_iter=500, random_state=42)
     }
 
-
 #mlflow.set_tracking_uri("file:/workspaces/MLOPs-Lung-Capacity-Prediction/mlruns")
-mlflow.set_tracking_uri("sqlite:///mlflow.db")
-mlflow.set_experiment("lung-capacity-prediction")
+#mlflow.set_tracking_uri("sqlite:///mlflow.db")
 
+mlflow.set_tracking_uri("file:./mlruns")
+mlflow.set_experiment("lung-capacity-prediction")
 
 best_model = None
 best_score = -999
@@ -88,10 +88,10 @@ os.makedirs("models", exist_ok=True)
 pickle.dump(best_model, open("models/model.pkl", "wb"))
 pickle.dump(scaler, open("models/scaler.pkl", "wb"))
 
-
 best_model_info = {
     "name": best_name,
     "r2": best_score
 }
 
 pickle.dump(best_model_info, open("models/model_info.pkl", "wb"))
+

@@ -1,0 +1,22 @@
+name: Kubernetes Deployment
+
+on:
+  workflow_run:
+    workflows: ["PublishImage"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Deploy application
+        run: |
+          kubectl apply -f k8s/

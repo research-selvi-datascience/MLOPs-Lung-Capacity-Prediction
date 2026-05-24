@@ -2,7 +2,8 @@ name: Kubernetes Deployment
 
 on:
   workflow_run:
-    workflows: ["PublishImage"]
+    #workflows: ["PublishImage"]
+    workflows: ["Full ML Pipeline"]
     types:
       - completed
 
